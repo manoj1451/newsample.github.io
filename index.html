@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <title>Web Chat samples</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body onload="postLoadMessage()">
+    <div id="webchat" role="main"></div>
+	<button id="helpButton" type="button">Help</button>
+    <script src="https://cdn.botframework.com/botframework-webchat/latest/webchat.js"></script>
+    <script>
+	//const store = window.WebChat.createStore();
+	
+
+	
+	  
+      window.WebChat.renderWebChat({
+        directLine: window.WebChat.createDirectLine({ token: '41lZSfgoceA.AsAwRUTFSCM1FMia2TNghdQYPih5xH9FIKjy87_uIyA' }),
+        userID: '14f688e4-f481-46cd-8bb4-a46ce5c53397',
+      
+	  }, document.getElementById('webchat'));
+	  	
+		
+		var url = location.search;
+	  //var url = (new URL(document.location)).searchParams;
+	  var x= JSON.stringify(url);
+	var result=JSON.parse(x);
+
+//alert(result.oid); //alerts ProjectID=462 is your case
+	  
+	   const postLoadMessage = () => {
+		alert('in postLoadMessage')
+            renderWebChat
+                .postActivity({type: "event", value: result.oid , from: {id: "me" }, name: "PageLoaded"})
+                .subscribe(id => console.log("success"));
+	}
+	  
+	  
+	  //alert('in postButtonMessage')
+	 // document.querySelector('postLoadMessage').addEventListener('onload', () => {
+	  //alert('in postButtonMessage')
+        // dispatch({
+          // type: 'WEB_CHAT/SEND_MESSAGE',
+      //     payload: { text: 'help' }
+        // });
+     // });
+	  
+	// document.querySelector('#helpButton').addEventListener('click', () => {
+	 // alert('in postButtonMessage')
+     //    dispatch({
+     //      type: 'WEB_CHAT/SEND_MESSAGE',
+     //     payload: { text: 'help' }
+     //   });
+     // });
+	   
+    </script>
+  </body>
+</html>
